@@ -3,8 +3,10 @@ const graphqlHTTP = require('express-graphql')
 const schema = require('./schema/index')
 const mongoose = require('mongoose')
 const config = require('./config.json')
+const cors = require('cors')
 
 const app = express()
+app.use(cors())
 // app.use({ useNewUrlParese: true })
 
 mongoose.connect(config.url, { useNewUrlParser: true })
