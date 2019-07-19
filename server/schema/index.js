@@ -1,5 +1,7 @@
 const graphql = require('graphql')
 const _ = require('lodash')
+const Book = require('../models/book')
+const Author = require('../models/author')
 
 const { GraphQLObjectType, GraphQLString, GraphQLSchema, GraphQLFloat, GraphQLID, GraphQLInt, GraphQLList } = graphql
 
@@ -40,7 +42,7 @@ const AuthorType = new GraphQLObjectType({
     age: { type: GraphQLInt },
     book: {
       type: new GraphQLList(BookType),
-      resolve (parent, args) {
+      resolve(parent, args) {
         return _.filter(books, { id: parent.id })
       }
     }
@@ -57,7 +59,7 @@ const RootQuery = new GraphQLObjectType({
       // arguments that are require to fire query
       args: { id: { type: GraphQLID } },
       // actual code for quering db
-      resolve (parent, args) {
+      resolve(parent, args) {
         return _.find(books, { id: args.id })
       }
     },
@@ -65,7 +67,7 @@ const RootQuery = new GraphQLObjectType({
       // An author based on id
       type: AuthorType,
       args: { id: { type: GraphQLID } },
-      resolve (parent, args) {
+      resolve(parent, args) {
         return _.find(authors, { id: args.id })
       }
     },
@@ -78,13 +80,53 @@ const RootQuery = new GraphQLObjectType({
     },
     authors: {
       type: new GraphQLList(AuthorType),
-      resolve (parent, args) {
+      resolve(parent, args) {
         return authors
       }
     }
   }
 })
 
+// mutation mutates the data
+const Mutation = new GraphQLObjectType({
+  name: 'Mutation',
+  fields: {
+    addAuthor: {
+      type: AuthorType,
+      args: {
+        name: { type: GraphQLString },
+        age: { type: GraphQLInt }
+      },
+      resolve(parent, args) {
+        const author = new Author({
+          name: args.name,
+          age: args.age
+        })
+        return author.save()
+      }
+    },
+    addBook: {
+      type: BookType,
+      args: {
+        name: { type: GraphQLString },
+        price: { type: GraphQLFloat },
+        edition: { type: GraphQLString },
+        authorId: { type: GraphQLID }
+      },
+      resolve(parent, args) {
+        const book = new Book({
+          name: args.name,
+          price: args.price,
+          edition: args.edition,
+          authorId: args.authorId
+        })
+        return book.save()
+      }
+    }
+  }
+})
+
 module.exports = new GraphQLSchema({
-  query: RootQuery
+  query: RootQuery,
+  mutation: Mutation
 })
