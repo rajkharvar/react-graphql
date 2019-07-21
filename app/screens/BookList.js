@@ -5,6 +5,7 @@ import { getBooksQuery } from '../queries/queries';
 
 class BookList extends Component {
   render() {
+    console.log(this.props.data.books);
     return (
       <View style={styles.container}>
         <Text>BookList</Text>

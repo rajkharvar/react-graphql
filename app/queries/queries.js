@@ -18,12 +18,17 @@ const getAuthorQuery = gql`
 `;
 
 const addBookMutation = gql`
-    mutation($name: String!, $edition: String, $price: $Float, $authorId: ID!) {
-        addBook(name: $name, edition: $edition, price: $price, authorId: $authorID) {
-            name
-            id
-        }
+  mutation($name: String!, $edition: String, $price: Float, $authorId: ID!) {
+    addBook(
+      name: $name
+      edition: $edition
+      price: $price
+      authorId: $authorId
+    ) {
+      name
+      id
     }
+  }
 `;
 
 const getBookQuery = gql`
