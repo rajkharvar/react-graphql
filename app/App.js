@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { StatusBar } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
@@ -32,6 +33,7 @@ const Container = createAppContainer(stackNavigator);
 function App() {
   return (
     <ApolloProvider client={client}>
+      <StatusBar barStyle='light-content' />
       <Container />
     </ApolloProvider>
   );
