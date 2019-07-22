@@ -35,7 +35,7 @@ const addBookMutation = gql`
 `;
 
 const getBookQuery = gql`
-  query GetBook($id: Id) {
+  query GetBook($id: ID) {
     book(id: $id) {
       name
       edition
