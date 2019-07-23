@@ -23,7 +23,7 @@ const getAuthorQuery = gql`
 `;
 
 const addBookMutation = gql`
-  mutation($name: String!, $edition: String!, $price: Float1, $authorId: ID!) {
+  mutation($name: String!, $edition: String!, $price: Float!, $authorId: ID!) {
     addBook(
       name: $name
       edition: $edition

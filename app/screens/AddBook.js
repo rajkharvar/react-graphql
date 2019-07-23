@@ -79,10 +79,11 @@ class AddBook extends Component {
         },
         refetchQueries: [{ query: getBooksQuery }]
       });
+      this.setState({ name: '', edition: '', price: 0, selectedAuthor: null });
+      alert('Book added to collection');
     }
   };
   render() {
-    console.log(this.state.selectedAuthor);
     return (
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View style={styles.container}>
