@@ -9,6 +9,7 @@ import {
   Keyboard,
   TouchableOpacity
 } from 'react-native';
+import { LinearGradient } from 'expo';
 import {
   getAuthorQuery,
   addBookMutation,
@@ -138,17 +139,28 @@ class AddBook extends Component {
             onPress={() => this.handleSubmit()}
             style={{
               borderColor: '#E10098',
-              alignItems: 'center',
-              justifyContent: 'center',
               borderWidth: 1,
               margin: 8
             }}
           >
-            <Text
-              style={{ color: '#E10098', fontSize: 18, paddingVertical: 8 }}
+            <LinearGradient
+              colors={['#E10098', '#EA425C']}
+              style={{
+                borderRadius: 5,
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
             >
-              Add
-            </Text>
+              <Text
+                style={{
+                  color: '#fff',
+                  fontSize: 18,
+                  paddingVertical: 8
+                }}
+              >
+                Add
+              </Text>
+            </LinearGradient>
           </TouchableOpacity>
         </View>
       </TouchableWithoutFeedback>
