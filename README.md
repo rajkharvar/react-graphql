@@ -1,8 +1,11 @@
-# React-GraphQL-Express-MongoDB
+# A Full Stack Application
+
+# A full stack application made using React, React-Native, Express, GraphQL, MongoDB, Apollo
 
 ## frontend
 
 - React
+- React-Native
 - React-Apollo
 
 ## backend
